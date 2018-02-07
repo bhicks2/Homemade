@@ -1,7 +1,9 @@
-package com.homemade.homemade;
+package com.homemade.homemade.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.homemade.homemade.R;
 
 public class SingleRecipe extends AppCompatActivity {
 
