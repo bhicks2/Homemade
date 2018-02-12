@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Search for recipes"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:layout_weight="1"/>
 
         <Button
             android:id="@+id/search_button"
