@@ -7,4 +7,5 @@ package com.homemade.homemade.model.food;
 public interface Edible {
 
     NutritionFacts getNutritionFacts();
+
 }

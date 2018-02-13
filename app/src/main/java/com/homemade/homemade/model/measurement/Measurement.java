@@ -1,10 +1,12 @@
 package com.homemade.homemade.model.measurement;
 
+import java.io.Serializable;
+
 /**
  * Created by brianhicks on 2/6/18.
  */
 
-public class Measurement {
+public class Measurement implements Serializable {
 
     private final double quantity;
     private final Unit unit;

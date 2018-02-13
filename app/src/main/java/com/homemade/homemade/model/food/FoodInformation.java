@@ -4,11 +4,13 @@ import com.homemade.homemade.model.measurement.Measurement;
 import com.homemade.homemade.model.measurement.Unit;
 import com.homemade.homemade.model.measurement.converter.MeasurementConverter;
 
+import java.io.Serializable;
+
 /**
  * Created by brianhicks on 2/6/18.
  */
 
-public class FoodInformation {
+public class FoodInformation implements Serializable {
 
     private final String key;
     private Measurement servingSize;

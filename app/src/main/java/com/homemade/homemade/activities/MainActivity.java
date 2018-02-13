@@ -1,17 +1,21 @@
 package com.homemade.homemade.activities;
 
 import android.content.Intent;
+import android.sax.Element;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.homemade.homemade.R;
+import com.homemade.homemade.activities.adapters.RecipeListAdapter;
+import com.homemade.homemade.model.food.Recipe;
 
 import java.util.ArrayList;
 
@@ -22,12 +26,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<String> recipesList = new ArrayList<>();
-        recipesList.add("Potato");
-        recipesList.add("Watermelon");
-        recipesList.add("Qumquat");
+        ArrayList<Recipe> recipesList = new ArrayList<>();
 
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, recipesList);
+        Recipe recipe = new Recipe("Salmonella", 1, null, null);
+        Recipe recipe2 = new Recipe("Dysentery", 1, null, null);
+
+        recipesList.add(recipe);
+        recipesList.add(recipe2);
+
+        ListAdapter adapter = new RecipeListAdapter(this, R.layout.recipe_list_element, recipesList);
 
         ListView recipes = (ListView) findViewById(R.id.recipe_list);
         recipes.setAdapter(adapter);
@@ -35,8 +42,9 @@ public class MainActivity extends AppCompatActivity {
         recipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView recipes = (TextView) view;
-                String recipeName = (String) recipes.getText();
+                LinearLayout element = (LinearLayout) view;
+                TextView titleView = element.findViewById(R.id.recipe_list_element_title);
+                String recipeName = (String) titleView.getText();
 
                 Toast.makeText(getApplicationContext(), recipeName + " selected", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), SingleRecipe.class);

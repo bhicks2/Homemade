@@ -1,25 +1,30 @@
 package com.homemade.homemade.model.food;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by brianhicks on 2/6/18.
  */
 
-public class Recipe implements Edible {
+public class Recipe implements Edible, Serializable {
 
     private String key;
+    private String name;
     private int numberOfServings;
     private List<Ingredient> ingredientList;
     private List<String> instructions;
 
-    public Recipe(String key, int numberOfServings, List<Ingredient> ingredientList, List<String> instructions){
-        this.key = key;
+    public Recipe(String name, int numberOfServings, List<Ingredient> ingredientList, List<String> instructions){
+        this.name = name;
         this.numberOfServings = numberOfServings;
         this.ingredientList = ingredientList;
         this.instructions = instructions;
     }
 
+    public String getName() {
+        return name;
+    }
 
     @Override
     public NutritionFacts getNutritionFacts() {

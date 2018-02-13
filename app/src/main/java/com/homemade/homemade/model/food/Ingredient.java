@@ -2,11 +2,13 @@ package com.homemade.homemade.model.food;
 
 import com.homemade.homemade.model.measurement.Measurement;
 
+import java.io.Serializable;
+
 /**
  * Created by brianhicks on 2/6/18.
  */
 
-public class Ingredient implements Edible{
+public class Ingredient implements Edible, Serializable{
 
     private FoodInformation foodInfo;
     private Measurement quantity;

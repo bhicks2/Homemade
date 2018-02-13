@@ -1,10 +1,12 @@
 package com.homemade.homemade.model.food;
 
+import java.io.Serializable;
+
 /**
  * Created by brianhicks on 2/6/18.
  */
 
-public class NutritionFacts {
+public class NutritionFacts implements Serializable {
 
     // use of Integers instead of ints allows us to distinguish between no value and 0.
     private Integer calories;
