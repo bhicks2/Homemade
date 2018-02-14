@@ -115,7 +115,7 @@ public class AddRecipeIngredients extends AppCompatActivity implements AddIngred
         wholeMilkFacts.setProtein(8);
         wholeMilkFacts.setTotalCarbohydrates(12);
         wholeMilkFacts.setTotalFat(8);
-        FoodInformation wholeMilkInfo = new FoodInformation("Milk (Large)", wholeMilkServing, new MeasurementConverter(), wholeMilkFacts);
+        FoodInformation wholeMilkInfo = new FoodInformation("Milk (Whole)", wholeMilkServing, new MeasurementConverter(), wholeMilkFacts);
 
 
         availableIngredients.add(jalapenoInfo);
