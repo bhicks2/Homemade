@@ -4,11 +4,13 @@ import com.homemade.homemade.model.measurement.Measurement;
 import com.homemade.homemade.model.measurement.Unit;
 import com.homemade.homemade.model.measurement.UnitType;
 
+import java.io.Serializable;
+
 /**
  * Created by brianhicks on 2/6/18.
  */
 
-class MeasurementConverterHelper {
+class MeasurementConverterHelper implements Serializable {
 
     private final UnitType unitTypeOne;
     private final UnitType unitTypeTwo;

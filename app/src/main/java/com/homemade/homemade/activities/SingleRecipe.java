@@ -139,7 +139,8 @@ public class SingleRecipe extends AppCompatActivity {
     }
 
     private void displayNutrition() {
-        textField.setText("I'm a nutrition display");
+        String nutritionText = RecipeFormatter.createNutritionText(recipe);
+        textField.setText(nutritionText);
 
         state = DisplayState.NUTRITION;
         nutritionButton.setBackgroundColor(ACTIVE_COLOR);

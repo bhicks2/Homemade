@@ -4,11 +4,13 @@ import com.homemade.homemade.model.measurement.Measurement;
 import com.homemade.homemade.model.measurement.Unit;
 import com.homemade.homemade.model.measurement.UnitType;
 
+import java.io.Serializable;
+
 /**
  * Created by brianhicks on 2/6/18.
  */
 
-public class MeasurementConverter {
+public class MeasurementConverter implements Serializable {
 
     private MeasurementConverterHelper volumeMassConverter;
     private MeasurementConverterHelper volumeCountConverter;

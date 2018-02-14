@@ -27,11 +27,18 @@ import com.homemade.homemade.model.food.NutritionFacts;
 import com.homemade.homemade.model.food.Recipe;
 import com.homemade.homemade.model.measurement.Measurement;
 import com.homemade.homemade.model.measurement.Unit;
+import com.homemade.homemade.model.measurement.converter.MeasurementConverter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AddRecipeIngredients extends AppCompatActivity implements AddIngredientDialogListener {
+
+    public static final FoodInformation JALAPENO;
+    public static final FoodInformation RED_ONION;
+    public static final FoodInformation GARLIC_CLOVE;
+    public static final FoodInformation CILANTRO;
+    public static final FoodInformation TOMATO;
 
     private TextView nextButton;
     private TextView backButton;
@@ -51,10 +58,73 @@ public class AddRecipeIngredients extends AppCompatActivity implements AddIngred
 
         Measurement jalapenoServing = new Measurement(1, Unit.COUNT);
         NutritionFacts jalapenoFacts = new NutritionFacts();
-        FoodInformation jalapenoInfo = new FoodInformation("jalapeño", null, null, null);
+        jalapenoFacts.setCalories(4);
+        jalapenoFacts.setProtein(0);
+        jalapenoFacts.setTotalCarbohydrates(1);
+        jalapenoFacts.setTotalFat(0);
+        FoodInformation jalapenoInfo = new FoodInformation("Jalapeño", jalapenoServing, new MeasurementConverter(), jalapenoFacts);
+        JALAPENO = jalapenoInfo;
+
+        Measurement redOnionServing = new Measurement(1, Unit.COUNT);
+        NutritionFacts redOnionFacts = new NutritionFacts();
+        redOnionFacts.setCalories(66);
+        redOnionFacts.setProtein(2);
+        redOnionFacts.setTotalCarbohydrates(14);
+        redOnionFacts.setTotalFat(0);
+        FoodInformation redOnionInfo = new FoodInformation("Red Onion", redOnionServing, new MeasurementConverter(), redOnionFacts);
+        RED_ONION = redOnionInfo;
+
+        Measurement garlicCloveServing = new Measurement(1, Unit.COUNT);
+        NutritionFacts garlicCloveFacts = new NutritionFacts();
+        garlicCloveFacts.setCalories(4);
+        garlicCloveFacts.setProtein(0);
+        garlicCloveFacts.setTotalCarbohydrates(1);
+        garlicCloveFacts.setTotalFat(0);
+        FoodInformation garlicCloveInfo = new FoodInformation("Garlic Clove", garlicCloveServing, new MeasurementConverter(), garlicCloveFacts);
+        GARLIC_CLOVE = garlicCloveInfo;
+
+        Measurement cilantroServing = new Measurement(0.25, Unit.CUP);
+        NutritionFacts cilantroFacts = new NutritionFacts();
+        cilantroFacts.setCalories(1);
+        cilantroFacts.setProtein(0);
+        cilantroFacts.setTotalCarbohydrates(0);
+        cilantroFacts.setTotalFat(0);
+        FoodInformation cilantroInfo = new FoodInformation("Cilantro", cilantroServing, new MeasurementConverter(), cilantroFacts);
+        CILANTRO = cilantroInfo;
+
+        Measurement tomatoServing = new Measurement(1, Unit.COUNT);
+        NutritionFacts tomatoFacts = new NutritionFacts();
+        tomatoFacts.setCalories(22);
+        tomatoFacts.setProtein(1);
+        tomatoFacts.setTotalCarbohydrates(5);
+        tomatoFacts.setTotalFat(0);
+        FoodInformation tomatoInfo = new FoodInformation("Tomato", tomatoServing, new MeasurementConverter(), tomatoFacts);
+        TOMATO = tomatoInfo;
+
+        Measurement eggServing = new Measurement(1, Unit.COUNT);
+        NutritionFacts eggFacts = new NutritionFacts();
+        eggFacts.setCalories(78);
+        eggFacts.setProtein(6);
+        eggFacts.setTotalCarbohydrates(1);
+        eggFacts.setTotalFat(5);
+        FoodInformation eggInfo = new FoodInformation("Egg (Large)", eggServing, new MeasurementConverter(), eggFacts);
+
+        Measurement wholeMilkServing = new Measurement(1, Unit.CUP);
+        NutritionFacts wholeMilkFacts = new NutritionFacts();
+        wholeMilkFacts.setCalories(148);
+        wholeMilkFacts.setProtein(8);
+        wholeMilkFacts.setTotalCarbohydrates(12);
+        wholeMilkFacts.setTotalFat(8);
+        FoodInformation wholeMilkInfo = new FoodInformation("Milk (Large)", wholeMilkServing, new MeasurementConverter(), wholeMilkFacts);
 
 
         availableIngredients.add(jalapenoInfo);
+        availableIngredients.add(redOnionInfo);
+        availableIngredients.add(garlicCloveInfo);
+        availableIngredients.add(cilantroInfo);
+        availableIngredients.add(tomatoInfo);
+        availableIngredients.add(eggInfo);
+        availableIngredients.add(wholeMilkInfo);
     }
 
     @Override

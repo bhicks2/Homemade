@@ -15,7 +15,10 @@ import android.widget.Toast;
 
 import com.homemade.homemade.R;
 import com.homemade.homemade.activities.adapters.RecipeListAdapter;
+import com.homemade.homemade.model.food.Ingredient;
 import com.homemade.homemade.model.food.Recipe;
+import com.homemade.homemade.model.measurement.Measurement;
+import com.homemade.homemade.model.measurement.Unit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,15 +28,29 @@ public class MainActivity extends AppCompatActivity {
     public static final List<Recipe> RECIPE_DATABASE = new ArrayList<>();
 
     static {
-        Recipe recipe = new Recipe();
-        recipe.setName("Salmonella");
-        recipe.setNumberOfServings(1);
-        Recipe recipe2 = new Recipe();
-        recipe2.setName("Dysentery");
-        recipe2.setNumberOfServings(2);
+        Recipe salsaRecipe = new Recipe();
+        salsaRecipe.setName("Salsa");
+        salsaRecipe.setCookTime(0);
+        salsaRecipe.setPrepTime(10);
+        salsaRecipe.setTotalTime(10);
+        salsaRecipe.setSource("My grandfather");
+        salsaRecipe.setNumberOfServings(6);
 
-        RECIPE_DATABASE.add(recipe);
-        RECIPE_DATABASE.add(recipe2);
+        List<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(new Ingredient(AddRecipeIngredients.JALAPENO, new Measurement(1, Unit.COUNT)));
+        ingredients.add(new Ingredient(AddRecipeIngredients.RED_ONION, new Measurement(0.25, Unit.COUNT)));
+        ingredients.add(new Ingredient(AddRecipeIngredients.GARLIC_CLOVE, new Measurement(1, Unit.COUNT)));
+        ingredients.add(new Ingredient(AddRecipeIngredients.CILANTRO, new Measurement(2, Unit.TABLESPOON)));
+        ingredients.add(new Ingredient(AddRecipeIngredients.TOMATO, new Measurement(3, Unit.COUNT)));
+        salsaRecipe.setIngredientList(ingredients);
+
+        List<String> instructions = new ArrayList<>();
+        instructions.add("Put all of the ingredients (except the tomatoes) into the food processor and pulse until minced.");
+        instructions.add("Add tomatos and continue pulsing until the tomatos are roughly chopped");
+        instructions.add("Store in an airtight container in the refrigerator for up to two days");
+        salsaRecipe.setInstructions(instructions);
+
+        RECIPE_DATABASE.add(salsaRecipe);
     }
 
     @Override
