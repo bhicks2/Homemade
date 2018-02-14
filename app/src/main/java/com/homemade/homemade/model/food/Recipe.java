@@ -1,29 +1,31 @@
 package com.homemade.homemade.model.food;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by brianhicks on 2/6/18.
  */
 
-public class Recipe implements Edible, Serializable {
+public class Recipe implements Edible, Serializable, Comparable<Recipe> {
 
-    private String key;
     private String name;
+    private String source;
     private int numberOfServings;
+
+    private Integer prepTime;
+    private Integer cookTime;
+    private Integer totalTime;
+
     private List<Ingredient> ingredientList;
     private List<String> instructions;
 
-    public Recipe(String name, int numberOfServings, List<Ingredient> ingredientList, List<String> instructions){
-        this.name = name;
-        this.numberOfServings = numberOfServings;
-        this.ingredientList = ingredientList;
-        this.instructions = instructions;
-    }
-
-    public String getName() {
-        return name;
+    public Recipe(){
+        ingredientList = new ArrayList<>();
+        instructions = new ArrayList<>();
     }
 
     @Override
@@ -38,12 +40,52 @@ public class Recipe implements Edible, Serializable {
         return NutritionFacts.scale(total, scaleFactor);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getNumberOfServings() {
         return numberOfServings;
     }
 
     public void setNumberOfServings(int numberOfServings) {
         this.numberOfServings = numberOfServings;
+    }
+
+    public Integer getPrepTime() {
+        return prepTime;
+    }
+
+    public void setPrepTime(Integer prepTime) {
+        this.prepTime = prepTime;
+    }
+
+    public Integer getCookTime() {
+        return cookTime;
+    }
+
+    public void setCookTime(Integer cookTime) {
+        this.cookTime = cookTime;
+    }
+
+    public Integer getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(Integer totalTime) {
+        this.totalTime = totalTime;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public List<Ingredient> getIngredientList() {
@@ -60,5 +102,26 @@ public class Recipe implements Edible, Serializable {
 
     public void setInstructions(List<String> instructions) {
         this.instructions = instructions;
+    }
+
+
+    @Override
+    public int compareTo(@NonNull Recipe o) {
+        return name.compareTo(o.name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Recipe recipe = (Recipe) o;
+
+        return name != null ? name.equals(recipe.name) : recipe.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 }

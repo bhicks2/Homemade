@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.homemade.homemade.R;
+import com.homemade.homemade.model.food.Recipe;
 
 public class SingleRecipe extends AppCompatActivity {
 
@@ -31,20 +31,25 @@ public class SingleRecipe extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        state = DisplayState.INSTRUCTIONS;
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_recipe);
 
         Intent intent = getIntent();
+        final Recipe recipe = (Recipe) intent.getSerializableExtra("RECIPE");
 
-        String recipeName = intent.getStringExtra("RECIPE_NAME");
+        constructActivity();
+        populateActivity(recipe);
 
-        ImageView imgView = (ImageView)findViewById(R.id.recipe_image);
-        imgView.setImageResource(R.drawable.potato);
-        TextView title = (TextView)findViewById(R.id.recipe_name);
-        title.setText(recipeName);
+        TextView editButton = (TextView) findViewById(R.id.edit_button);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAddRecipe(recipe);
+            }
+        });
+    }
 
+    private void constructActivity(){
         textField = (TextView) findViewById(R.id.text_field);
 
         ingredientsButton = (Button) findViewById(R.id.ingredients_button);
@@ -55,54 +60,41 @@ public class SingleRecipe extends AppCompatActivity {
         instructionsButton.setBackgroundColor(INACTIVE_COLOR);
         nutritionButton.setBackgroundColor(INACTIVE_COLOR);
 
+        state = DisplayState.INGREDIENTS;
+
+        createAllDisplayStateButtonListeners();
         changeState(DisplayState.INGREDIENTS);
+    }
 
-        ingredientsButton.setOnClickListener(new View.OnClickListener() {
+    private void populateActivity(Recipe recipe){
+        ImageView imgView = (ImageView)findViewById(R.id.recipe_image);
+        imgView.setImageResource(R.drawable.potato);
+        TextView title = (TextView)findViewById(R.id.recipe_name);
+        title.setText(recipe.getName());
+    }
+
+    private void goToAddRecipe(Recipe recipe){
+        Intent intent = new Intent(this, AddRecipeMeta.class);
+        intent.putExtra("RECIPE", recipe);
+        startActivity(intent);
+    }
+
+    private void createAllDisplayStateButtonListeners() {
+        createDisplayStateButtonListener(ingredientsButton, DisplayState.INGREDIENTS);
+        createDisplayStateButtonListener(instructionsButton, DisplayState.INSTRUCTIONS);
+        createDisplayStateButtonListener(nutritionButton, DisplayState.NUTRITION);
+    }
+
+    private void createDisplayStateButtonListener(Button button, final DisplayState newState){
+        button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-                // If already showing ingredients, do nothing
-                if(state == DisplayState.INGREDIENTS){
+                // If state already shown, do nothing
+                if(state == newState){
                     return;
                 }
 
-                changeState(DisplayState.INGREDIENTS);
-            }
-        });
-
-        instructionsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // If already showing ingredients, do nothing
-                if(state == DisplayState.INSTRUCTIONS){
-                    return;
-                }
-
-                changeState(DisplayState.INSTRUCTIONS);
-
-
-            }
-        });
-
-        nutritionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // If already showing ingredients, do nothing
-                if(state == DisplayState.NUTRITION){
-                    return;
-                }
-
-                changeState(DisplayState.NUTRITION);
-            }
-        });
-
-        TextView editButton = (TextView) findViewById(R.id.edit_button);
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("Edit button pressed");
+                changeState(newState);
             }
         });
     }

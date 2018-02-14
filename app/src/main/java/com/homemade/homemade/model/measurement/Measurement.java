@@ -23,4 +23,9 @@ public class Measurement implements Serializable {
     public Unit getUnit() {
         return unit;
     }
+
+    @Override
+    public String toString(){
+        return Double.toString(quantity) + " " + unit.getAbbreviation();
+    }
 }

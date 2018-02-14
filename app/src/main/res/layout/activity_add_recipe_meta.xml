@@ -8,7 +8,30 @@
     tools:context="com.homemade.homemade.activities.AddRecipeMeta">
 
     <Toolbar android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        >
+
+        <TextView android:layout_height="wrap_content"
+            android:id="@+id/meta_next_button"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end"
+            android:text="Next"
+            android:layout_marginEnd="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            >
+        </TextView>
+        <TextView android:layout_height="wrap_content"
+            android:id="@+id/meta_cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_gravity="start"
+            android:text="Cancel"
+            android:layout_marginStart="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            >
+        </TextView>
 
     </Toolbar>
 
@@ -29,6 +52,7 @@
         </TextView>
 
         <EditText
+            android:id="@+id/title_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -52,6 +76,7 @@
         </TextView>
 
         <EditText
+            android:id="@+id/source_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -76,6 +101,7 @@
         </TextView>
 
         <EditText
+            android:id="@+id/prep_time_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -94,6 +120,7 @@
         </TextView>
 
         <EditText
+            android:id="@+id/cook_time_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -119,6 +146,7 @@
         </TextView>
 
         <EditText
+            android:id="@+id/total_time_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -137,6 +165,7 @@
         </TextView>
 
         <EditText
+            android:id="@+id/servings_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"

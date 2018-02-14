@@ -18,23 +18,30 @@ import com.homemade.homemade.activities.adapters.RecipeListAdapter;
 import com.homemade.homemade.model.food.Recipe;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final List<Recipe> RECIPE_DATABASE = new ArrayList<>();
+
+    static {
+        Recipe recipe = new Recipe();
+        recipe.setName("Salmonella");
+        recipe.setNumberOfServings(1);
+        Recipe recipe2 = new Recipe();
+        recipe2.setName("Dysentery");
+        recipe2.setNumberOfServings(2);
+
+        RECIPE_DATABASE.add(recipe);
+        RECIPE_DATABASE.add(recipe2);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<Recipe> recipesList = new ArrayList<>();
-
-        Recipe recipe = new Recipe("Salmonella", 1, null, null);
-        Recipe recipe2 = new Recipe("Dysentery", 1, null, null);
-
-        recipesList.add(recipe);
-        recipesList.add(recipe2);
-
-        ListAdapter adapter = new RecipeListAdapter(this, R.layout.recipe_list_element, recipesList);
+        ListAdapter adapter = new RecipeListAdapter(this, R.layout.recipe_list_element, RECIPE_DATABASE);
 
         ListView recipes = (ListView) findViewById(R.id.recipe_list);
         recipes.setAdapter(adapter);
@@ -44,19 +51,22 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 LinearLayout element = (LinearLayout) view;
                 TextView titleView = element.findViewById(R.id.recipe_list_element_title);
-                String recipeName = (String) titleView.getText();
+                Recipe selectedRecipe = RECIPE_DATABASE.get(position);
 
-                Toast.makeText(getApplicationContext(), recipeName + " selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), selectedRecipe.getName() + " selected", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), SingleRecipe.class);
-                intent.putExtra("RECIPE_NAME", recipeName);
+                intent.putExtra("RECIPE", selectedRecipe);
                 startActivity(intent);
             }
         });
-    }
 
-    public void goToRecipe(View view) {
-
-        Intent intent = new Intent(this, SingleRecipe.class);
-        startActivity(intent);
+        TextView addRecipeButton = (TextView) findViewById(R.id.main_add_button);
+        addRecipeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddRecipeMeta.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -18,7 +18,9 @@
         </activity>
         <activity android:name=".activities.Cookbooks" />
         <activity android:name=".activities.SingleRecipe" />
-        <activity android:name=".activities.AddRecipeMeta"></activity>
+        <activity android:name=".activities.AddRecipeMeta" />
+        <activity android:name=".activities.AddRecipeIngredients" />
+        <activity android:name=".activities.AddRecipeInstructions"></activity>
     </application>
 
 </manifest>
