@@ -10,12 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.homemade.homemade.R;
+import com.homemade.homemade.model.RecipeFormatter;
 import com.homemade.homemade.model.food.Recipe;
 
 public class SingleRecipe extends AppCompatActivity {
 
     private enum DisplayState {
-        INGREDIENTS, INSTRUCTIONS, NUTRITION;
+        UNINITIALIZED, INGREDIENTS, INSTRUCTIONS, NUTRITION;
     }
 
     private static final int ACTIVE_COLOR = Color.CYAN;
@@ -29,16 +30,18 @@ public class SingleRecipe extends AppCompatActivity {
     private Button instructionsButton;
     private Button nutritionButton;
 
+    private Recipe recipe;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_recipe);
 
         Intent intent = getIntent();
-        final Recipe recipe = (Recipe) intent.getSerializableExtra("RECIPE");
+        recipe = (Recipe) intent.getSerializableExtra("RECIPE");
 
         constructActivity();
-        populateActivity(recipe);
+        populateActivity();
 
         TextView editButton = (TextView) findViewById(R.id.edit_button);
         editButton.setOnClickListener(new View.OnClickListener() {
@@ -60,15 +63,16 @@ public class SingleRecipe extends AppCompatActivity {
         instructionsButton.setBackgroundColor(INACTIVE_COLOR);
         nutritionButton.setBackgroundColor(INACTIVE_COLOR);
 
-        state = DisplayState.INGREDIENTS;
+        state = DisplayState.UNINITIALIZED;
 
         createAllDisplayStateButtonListeners();
         changeState(DisplayState.INGREDIENTS);
     }
 
-    private void populateActivity(Recipe recipe){
+    private void populateActivity(){
         ImageView imgView = (ImageView)findViewById(R.id.recipe_image);
         imgView.setImageResource(R.drawable.potato);
+
         TextView title = (TextView)findViewById(R.id.recipe_name);
         title.setText(recipe.getName());
     }
@@ -101,8 +105,9 @@ public class SingleRecipe extends AppCompatActivity {
 
     private void changeState(DisplayState newState){
         Button currentStateButton = findCurrentStateButton();
-
-        currentStateButton.setBackgroundColor(INACTIVE_COLOR);
+        if(currentStateButton != null) {
+            currentStateButton.setBackgroundColor(INACTIVE_COLOR);
+        }
 
         switch(newState){
             case INGREDIENTS:
@@ -118,14 +123,16 @@ public class SingleRecipe extends AppCompatActivity {
     }
 
     private void displayIngredients() {
-        textField.setText("I'm an ingredients display");
+        String ingredientsText = RecipeFormatter.createIngredientText(recipe);
+        textField.setText(ingredientsText);
 
         state = DisplayState.INGREDIENTS;
         ingredientsButton.setBackgroundColor(ACTIVE_COLOR);
     }
 
     private void displayInstructions() {
-        textField.setText("I'm an instructions display");
+        String instructionsText = RecipeFormatter.createInstructionsText(recipe);
+        textField.setText(instructionsText);
 
         state = DisplayState.INSTRUCTIONS;
         instructionsButton.setBackgroundColor(ACTIVE_COLOR);
@@ -146,6 +153,8 @@ public class SingleRecipe extends AppCompatActivity {
                 return instructionsButton;
             case NUTRITION:
                 return nutritionButton;
+            case UNINITIALIZED:
+                return null;
         }
 
         throw new RuntimeException("Unhandled DisplayState encountered; check all are accounted for.");
