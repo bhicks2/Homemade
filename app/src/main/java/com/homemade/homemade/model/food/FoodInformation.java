@@ -35,6 +35,10 @@ public class FoodInformation implements Serializable {
         return NutritionFacts.scale(nutritionFacts, scaleFactor);
     }
 
+    public String getKey() {
+        return key;
+    }
+
     public Measurement getServingSize() {
         return servingSize;
     }
@@ -57,6 +61,11 @@ public class FoodInformation implements Serializable {
 
     public void setNutritionFacts(NutritionFacts nutritionFacts) {
         this.nutritionFacts = nutritionFacts;
+    }
+
+    @Override
+    public String toString(){
+        return getKey();
     }
 }
 

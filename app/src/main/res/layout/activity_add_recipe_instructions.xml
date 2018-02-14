@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.homemade.homemade.activities.AddRecipeInstructions">
+
+    <Toolbar android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        >
+
+        <TextView android:layout_height="wrap_content"
+            android:id="@+id/instructions_next_button"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end"
+            android:text="Save"
+            android:layout_marginEnd="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            >
+        </TextView>
+        <TextView android:layout_height="wrap_content"
+            android:id="@+id/instructions_back_button"
+            android:layout_width="wrap_content"
+            android:layout_gravity="start"
+            android:text="Back"
+            android:layout_marginStart="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            >
+        </TextView>
+    </Toolbar>
+
+    <EditText
+        android:id="@+id/instruction_field"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:hint="What is the next step?"
+        >
+    </EditText>
+
+    <Button
+        android:id="@+id/instructions_add_instruction_button"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:text="Add Instruction">
+    </Button>
+
+    <ListView
+        android:id="@+id/instructions_instructions_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+    </ListView>
+
+
+
+</LinearLayout>

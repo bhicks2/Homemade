@@ -1,5 +1,7 @@
 package com.homemade.homemade.model.food;
 
+import android.icu.util.Measure;
+
 import com.homemade.homemade.model.measurement.Measurement;
 
 import java.io.Serializable;
@@ -37,5 +39,10 @@ public class Ingredient implements Edible, Serializable{
 
     public void setQuantity(Measurement quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return quantity.toString() + " " + foodInfo.getKey();
     }
 }

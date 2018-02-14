@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.homemade.homemade.activities.AddRecipeIngredients">
+
+    <Toolbar android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        >
+
+        <TextView android:layout_height="wrap_content"
+            android:id="@+id/ingredients_next_button"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end"
+            android:text="Next"
+            android:layout_marginEnd="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            >
+        </TextView>
+        <TextView android:layout_height="wrap_content"
+            android:id="@+id/ingredients_back_button"
+            android:layout_width="wrap_content"
+            android:layout_gravity="start"
+            android:text="Back"
+            android:layout_marginStart="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            >
+        </TextView>
+    </Toolbar>
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selected Ingredients"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_margin="5dp">
+    </TextView>
+
+
+    <ListView
+        android:id="@+id/ingredients_added_ingredients_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+    </ListView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_margin="5dp"/>
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingredient Database"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_margin="5dp">
+    </TextView>
+
+    <ListView
+        android:id="@+id/ingredients_ingredients_database"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </ListView>
+
+</LinearLayout>

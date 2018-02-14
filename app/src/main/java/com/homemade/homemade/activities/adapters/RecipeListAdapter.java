@@ -65,7 +65,11 @@ public class RecipeListAdapter extends ArrayAdapter<Recipe> {
             image.setImageResource(R.drawable.potato);
 
             title.setText(recipe.getName());
-            totalTime.setText("Total Time: 5 min");
+
+            if(recipe.getTotalTime() != null) {
+                String text = "Total Time: " + recipe.getTotalTime();
+                totalTime.setText(text);
+            }
         }
 
         return v;
