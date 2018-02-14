@@ -91,7 +91,8 @@
         android:layout_margin="15dp"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:text="Lorem Ipsum...">
+        android:textSize="20sp"
+        android:textColor="@android:color/black">
     </TextView>
 
 
