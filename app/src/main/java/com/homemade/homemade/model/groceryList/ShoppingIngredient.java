@@ -19,18 +19,22 @@ public class ShoppingIngredient implements Serializable{
         this.purchased = false;
     }
 
+    // Get Ingredient
     public Ingredient getIngredient() {
         return ingredient;
     }
 
+    // Set Ingredient
     public void setIngredient(Ingredient ingredient) {
         this.ingredient = ingredient;
     }
 
+    // Get purchased boolean
     public boolean getPurchased() {
         return purchased;
     }
 
+    // Set purchased boolean
     public void setPurchased(boolean purchased) {
         this.purchased = purchased;
     }
